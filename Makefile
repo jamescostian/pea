@@ -11,7 +11,9 @@ ALL=$(PEA) $(PEAD) $(PEAT) $(SERVICE)
 
 check:
 	$(info Checking for dependencies...)
+	systemctl is-system-running
 	@which bash cryptsetup dd
+
 
 install: check
 	install peat.sh $(PEAT)
