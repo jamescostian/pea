@@ -13,9 +13,9 @@ Drawbacks: ssh identity is stored unencrypted.
 ## Proposal
 
 Before a remote reboot, you must run the command `pea` to generate a
-one-time token (OTP) which is used during startup to descrypt the root partition.
+one-time password/token (OTP) which is used during startup to descrypt the root partition.
 
-After a successful boot, the current OTP is invalidated. The OTP is shortlived.
+After each successful boot, the current OTP is invalidated. The OTP is shortlived.
 
 Drawbacks: if you accidentally reboot without running `pea` first, sucks to suck. Get in a car.
 
