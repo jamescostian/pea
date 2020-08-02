@@ -3,6 +3,6 @@
 source $(which peat)
 
 set -x
-dd if=/dev/urandom of=/boot/ot.pea bs=512 count=4 status=progress
-cryptsetup luksAddKey $DISK /boot/ot.pea
+dd if=/dev/urandom of=$OTP bs=512 count=4 status=progress
+cryptsetup luksAddKey $DISK $OTP
 systemctl stop pead

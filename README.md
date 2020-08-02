@@ -12,23 +12,45 @@ Drawbacks: ssh identity is stored unencrypted.
 
 ## Proposal
 
-Before a remote reboot, you must run the command `pea` to generate a
-one-time password/token (OTP) which is used during startup to descrypt the root partition.
+Before a remote reboot, the machine is in a trusted state.
+You must run the command `pea` to generate a one-time password/token (OTP)
+which is used during startup to descrypt the root partition.
 
-After each successful boot, the current OTP is invalidated. The OTP is shortlived.
+After each successful boot, the current OTP is immediately invalidated. The OTP is shortlived.
 
 Drawbacks: if you accidentally reboot without running `pea` first, sucks to suck. Get in a car.
 
-## Setup
+## Precondition
 
-An unencrypted partition to hold the OTP is mounted at `/boot`.
-The OTP is a LUKS keyfile called `/boot/ot.pea`.
+`/` is LUKS-encrypted. You will need an unencrypted partition, which can be
+the EFI system partition (ESP) which is typically mounted at `/boot`.
+
+## Installation
+
+```bash
+sudo make install
+```
+
+Edit `/etc/pea.conf` to configure your root partition device and OTP location.
+
+```env
+DISK=/dev/sda2
+OTP=/boot/ot.pea
+```
+
+Enable and start the daemon.
+
+```bash
+sudo systemctl enable --now pead
+```
+
+You shouldn't be allowed to run `systemctl reboot` anymore.
 
 ## Components
 
 `pead`: systemd service (daemon) which inhibits poweroff until `pea` is ran
 
-`pea`: command to generate `/boot/ot.pea`
+`pea`: command to generate `/boot/ot.pea` and stop `pead`
 
 `peat`: helper script to check arguments
 

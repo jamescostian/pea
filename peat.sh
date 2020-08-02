@@ -1,4 +1,8 @@
-# PeaTest: check argument is LUKS device and /boot is mounted
+# PeaTest: assert that disk is a LUKS device
+
+if [ -f /etc/pea.conf ]; then
+  source /etc/pea.conf
+fi
 
 set -e
 
@@ -11,4 +15,4 @@ if ! cryptsetup isLuks $DISK; then
 	exit 1
 fi
 
-mountpoint /boot
+OTP=${OTP:-/boot/ot.pea}

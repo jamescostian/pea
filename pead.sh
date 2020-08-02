@@ -3,12 +3,12 @@ source $(which peat)
 
 why='next boot will require manual entry of password to decrypt disk, please run pea'
 
-if [ -f /boot/ot.pea ]; then
-  cryptsetup luksRemoveKey $DISK /boot/ot.pea
-  rm -v /boot/ot.pea
+if [ -f "$OTP" ]; then
+  cryptsetup luksRemoveKey $DISK $OTP || echo "warn: $OTP was invalid"
+  rm -v $OTP
 
 else
-  echo Not booted using pea
+  echo OTP file $OTP not found
 fi 
 
 systemd-notify --ready
