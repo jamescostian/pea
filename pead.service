@@ -1,0 +1,10 @@
+[Unit]
+Description=Prepare Encrypted Auto-boot
+Documentation=https://gitlab.com/jennydaman/pea/-/blob/master/README.md
+
+[Service]
+Type=notify
+ExecStart=pead.sh
+
+[Install]
+WantedBy=multi-user.target
