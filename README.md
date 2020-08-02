@@ -22,8 +22,8 @@ Drawbacks: if you accidentally reboot without running `pea` first, sucks to suck
 
 ## Precondition
 
-`/` is LUKS-encrypted. You will need an unencrypted partition, which can be
-the EFI system partition (ESP) which is typically mounted at `/boot`.
+`/` is LUKS-encrypted. You will need an unencrypted partition:
+the EFI system partition (ESP) is suitable, it is typically mounted at `/boot`.
 
 ## Installation
 
