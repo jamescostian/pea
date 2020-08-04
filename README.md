@@ -64,3 +64,22 @@ Assuming `otp.pea` is on `/dev/sda1` (probably the EFI system partition),
 add the kernel parameter `cryptkey=/dev/sda1:vfat:/ot.pea` to kernel parameters.
 In case the keyfile cannot be used (missing or misconfigured), the kernel will
 resort to taking in a password from the keyboard.
+
+## MOTD
+
+Consider putting this in your `/etc/profile`
+
+```bash
+source /etc/pea.conf
+if [ -f "$OTP" ]; then
+  tput blink
+  tput setaf 1
+  cat << EOF
+
+    WARNING: $OTP is present
+    Disk will be automatically decrypted upon boot.
+
+EOF
+  tput sgr0
+fi
+```
