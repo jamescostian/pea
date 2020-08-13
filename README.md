@@ -6,7 +6,9 @@ Problem: with full-disk encryption, you cannot reboot your machine remotely
 since it will ask for a password during boot.
 
 Existing solution: install a SSH server in the initial ramdisk
-https://benediktkr.github.io/ops/2015/05/01/remote-fde.html
+
+- https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Remote_unlocking_of_the_root_(or_other)_partition
+- https://benediktkr.github.io/ops/2015/05/01/remote-fde.html
 
 Drawbacks: ssh identity is stored unencrypted.
 
