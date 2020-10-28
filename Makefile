@@ -5,6 +5,7 @@ PEA=$(BIN)/pea
 PEAD=$(BIN)/pead
 PEAT=$(BIN)/peat
 CONF=/etc/pea.conf
+CHICKPEA=/etc/profile.d/01-chickpea
 
 SERVICE=/usr/lib/systemd/system/pead.service
 ALL=$(PEA) $(PEAD) $(PEAT) $(SERVICE)
@@ -19,6 +20,7 @@ install: check
 	install peat.sh $(PEAT)
 	install pea.sh $(PEA)
 	install pead.sh $(PEAD)
+	install chickpea.sh $(CHICKPEA)
 	cp pea.conf $(shell [ -f "$(CONF)" ] && echo $(CONF).pacnew || echo $(CONF))
 	sed "s/ExecStart=.*$$/ExecStart=$(subst /,\/,$(PEAD))/" pead.service > $(SERVICE)
 	systemctl daemon-reload
