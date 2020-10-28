@@ -4,7 +4,7 @@ warning=
 
 if [ -r "$(dirname $OTP)" ] && [ -f "$OTP" ]; then
   warning="$OTP is present"
-elif ! systemctl is-active -q pead.serivce ; then
+elif ! systemctl is-active -q pead.service ; then
   warning="pead.service is inactive"
 fi
 
