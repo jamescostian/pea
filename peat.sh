@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # PeaTest: assert that disk is a LUKS device
 
 if [ -f /etc/pea.conf ]; then
@@ -10,9 +11,12 @@ if [ -z "$DISK" ]; then
   echo "DISK not specified"
 	exit 1
 fi
-if ! cryptsetup isLuks $DISK; then
+if ! sudo cryptsetup isLuks $DISK; then
 	echo $DISK is not LUKS encrypted.
 	exit 1
 fi
 
-OTP=${OTP:-/boot/ot.pea}
+if [ -z "$OTP" ]; then
+  echo "OTP not specified"
+	exit 1
+fi

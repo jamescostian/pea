@@ -1,6 +1,6 @@
 [Unit]
 Description=Prepare Encrypted Auto-boot
-Documentation=https://gitlab.com/jennydaman/pea/-/blob/master/README.md
+Documentation=https://github.com/jamescostian/pea/-/blob/main/README.md
 
 [Service]
 Type=notify

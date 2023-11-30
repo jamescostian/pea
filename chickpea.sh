@@ -3,9 +3,9 @@ source /etc/pea.conf
 warning=
 
 if [ -r "$(dirname $OTP)" ] && [ -f "$OTP" ]; then
-  warning="$OTP is present"
+  warning="$OTP is present. Disk will be automatically decrypted upon boot."
 elif ! systemctl is-active -q pead.service ; then
-  warning="pead.service is inactive"
+  warning="pead.service is inactive. You can shutdown or reboot without running pea."
 fi
 
 if [ -n "$warning" ]; then
@@ -15,7 +15,6 @@ if [ -n "$warning" ]; then
 cat << EOF
 
     WARNING: $warning
-    Disk will be automatically decrypted upon boot.
 
 EOF
   tput sgr0
